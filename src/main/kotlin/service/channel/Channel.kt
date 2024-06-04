@@ -11,7 +11,6 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
-//TODO:处理异常
 /**
  * 创建私聊频道
  * @param userID 想要创建的用户qq号
