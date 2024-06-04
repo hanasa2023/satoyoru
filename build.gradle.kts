@@ -18,6 +18,7 @@ dependencies {
     implementation(libs.ktor.client.auth)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.kotlinx.serialization.core)
+    implementation(libs.ajalt.mordant)
     testImplementation(kotlin("test"))
 }
 

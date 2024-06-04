@@ -1,6 +1,32 @@
 # Satoyoru
 
-## TODO
+<hr>
+[![Github](https://img.shields.io/github/license/hanasa2023/satoyoru.svg?logo=github)](./LICENSE)
 
-- [ ] 优化代码结构
-- [ ] 完善事件服务
+基于[kotlin](https://kotlinlang.org)和cc的bot开发框架
+
+<hr>
+
+## 📝 示例
+
+接收到```user_id```为```1145141919810```的用户发来的消息```echo```时，回复```test```
+
+```kotlin
+fun main() {
+    val satoyoru = satoyoru {
+        listening { api, event ->
+            val channelID = event.body?.channel?.id
+            val message = event.body?.message?.content
+            if (channelID == "private:1145141919" && message == "echo")
+                api.createMessage(channelID, "test")
+        }
+    }
+    satoyoru.close()
+}
+```
+
+## ✅ TODO
+
+- [ ] 消息处理
+    - [ ] 实现消息解析功能
+    - [ ] 实现消息构造功能
