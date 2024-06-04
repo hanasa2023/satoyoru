@@ -5,7 +5,6 @@ import cn.hanasaka.service.channel.model.Channel
 import cn.hanasaka.service.channel.model.CreateChannelBody
 import cn.hanasaka.service.channel.model.MuteChannelBody
 import cn.hanasaka.utils.Log
-import com.github.ajalt.mordant.terminal.Terminal
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*

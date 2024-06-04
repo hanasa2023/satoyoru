@@ -10,7 +10,7 @@ fun main() {
         listening { api, event ->
             val channelID = event.body?.channel?.id
             val message = event.body?.message?.content
-            if (channelID == "private:2019266396" && message == "test1")
+            if (channelID == "private:1145141919810" && message == "echo")
                 api.createMessage(channelID, "test")
         }
     }
