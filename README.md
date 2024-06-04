@@ -1,7 +1,7 @@
 # Satoyoru
 
 <hr>
-[![Github](https://img.shields.io/github/license/hanasa2023/satoyoru.svg?logo=github)](./LICENSE)
+[![GitHub](https://img.shields.io/github/license/hanasa2023/satoyoru?style=for-the-badge)](https://github.com/hanasa2023/satoyoru?tab=MIT-1-ov-file)
 
 基于[kotlin](https://kotlinlang.org)和cc的bot开发框架
 
