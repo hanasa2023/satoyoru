@@ -6,16 +6,29 @@
 
 ## 📝 示例
 
-接收到```user_id```为```1145141919810```的用户发来的消息```echo```时，回复```test```
+接收到```@me```且消息为```echo```时，回复
+![回复消息]()
 
 ```kotlin
 fun main() {
     val satoyoru = satoyoru {
         listening { api, event ->
             val channelID = event.body?.channel?.id
-            val message = event.body?.message?.content
-            if (channelID == "private:1145141919" && message == "echo")
-                api.createMessage(channelID, "test")
+            val message = event.body?.message?.content?.let { MessageUtil.parse(it) }
+            message?.let {
+                if (message.isAtMe && message.primaryText == "echo")
+                    channelID?.let { channelId ->
+                        api.createMessage(
+                            channelId,
+                            MessageUtil.create {
+                                event.body.user?.id?.let { at(id = it) }
+                                +"快来玩pjsk(x)"
+                                face(id = "353")
+                                img(File("src/main/resources/images/mzk.png").toURI().toURL().toString())
+                            }
+                        )
+                    }
+            }
         }
     }
     satoyoru.close()
@@ -24,6 +37,7 @@ fun main() {
 
 ## ✅ TODO
 
-- [ ] 消息处理
-    - [ ] 实现消息解析功能
-    - [ ] 实现消息构造功能
+- [x] 消息处理
+    - [x] 实现消息解析功能
+    - [x] 实现消息构造功能
+    - [x] ~~提供人性化消息信息获取接口~~

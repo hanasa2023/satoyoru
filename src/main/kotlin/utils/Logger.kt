@@ -26,11 +26,11 @@ object Log {
                     )
                             + "-"
                             + TextColors.cyan(
-                        (event.body?.member?.nick ?: "undefined")
+                        (event.body?.member?.nick ?: event.body?.user?.name ?: "undefined")
                                 + "(${event.body?.user?.id ?: "undefined"})"
                     )
                             + TextColors.gray(": ")
-                            + event.body?.message?.content
+                            + MessageUtil.parse(event.body?.message?.content ?: "").text
                 )
             }
 
@@ -43,7 +43,7 @@ object Log {
                 for (login in logins ?: emptyList()) {
                     t.println(
                         TextColors.gray("[$date]")
-                                + TextColors.brightGreen("[N] ")
+                                + TextColors.brightBlue("[I] ")
                                 + login.self_id + " 登录成功!!!!! Bot 开始运行"
                     )
                 }

@@ -2,8 +2,8 @@ package cn.hanasaka.service.events
 
 import cn.hanasaka.utils.TOKEN
 import cn.hanasaka.service.events.model.*
+import cn.hanasaka.utils.BotInfo
 import cn.hanasaka.utils.Log
-import com.github.ajalt.mordant.terminal.Terminal
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.auth.*
@@ -23,8 +23,6 @@ import kotlin.concurrent.scheduleAtFixedRate
  */
 fun HttpClient.listening(block: suspend HttpClient.(api: HttpClient, message: Event) -> Unit) {
     val timer = Timer("sendIdentify", true)
-
-    val t = Terminal()
 
     val api = HttpClient(CIO) {
         install(ContentNegotiation) {
@@ -58,6 +56,7 @@ fun HttpClient.listening(block: suspend HttpClient.(api: HttpClient, message: Ev
                         when (resJsonObject["op"]?.jsonPrimitive?.int) {
                             0 -> {
                                 event = Json.decodeFromJsonElement<Event>(resJsonElement)
+//                                println(resJsonElement)
                                 Log.normal(event)
                             }
 
@@ -67,6 +66,9 @@ fun HttpClient.listening(block: suspend HttpClient.(api: HttpClient, message: Ev
 
                             4 -> {
                                 val ready = Json.decodeFromJsonElement<Ready>(resJsonElement)
+                                ready.body?.logins?.forEach { login ->
+                                    login.self_id?.let { BotInfo.ids.add(it) }
+                                }
                                 Log.normal(ready)
                             }
                         }

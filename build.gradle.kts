@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.ajalt.mordant)
+    implementation(libs.org.jsoup)
     testImplementation(kotlin("test"))
 }
 
