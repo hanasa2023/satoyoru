@@ -7,7 +7,7 @@
 ## 📝 示例
 
 接收到```@me```且消息为```echo```时，回复
-![回复消息]()
+![回复消息](https://github.com/hanasa2023/satoyoru/blob/master/doc/resources/images/createdMessage.jpg)
 
 ```kotlin
 fun main() {
